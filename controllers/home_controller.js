@@ -6,19 +6,21 @@ module.exports.home = async function (req, res) {
 
   try {
 
-    let students = await Student.find({})
+    let allStudents = await Student.find({})
       .sort('-createdAt')
       .populate()
+      .populate('interviews')
 
     let interviews = await Interview.find({})
       .sort('-createdAt')
       .populate()
+      .populate('students')
 
     let employee = await Employee.findById(req.user._id);
 
     return res.render('home', {
       title: "Home",
-      students: students,
+      allStudents: allStudents,
       interviews: interviews,
       employee: employee
     });

@@ -1,5 +1,5 @@
 <ul>
-    <% for (s of students){%>
+    <% for (s of allStudents){%>
         <li>
             <%= s.name %>
             <%= s.batch %>
@@ -9,6 +9,23 @@
             <%= s.react %>
             <%= s.placed %>
             <%= s.result %>
+
+            <% for (i of s.interviews){%>
+
+                <small>
+                    <%= i.company %>
+                </small>
+
+                <small>
+                    <%= i.job %>
+                </small>
+
+                <small>
+                    <%= i.date %>
+                </small>
+                
+            <%}%>
+
         </li>
     <%}%>
 </ul>

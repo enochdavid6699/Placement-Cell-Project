@@ -4,16 +4,21 @@
             <%= i.company %>
             <%= i.job %>
 
-            <% for (s of students){%>
-                <%= s.name %>
+            <% for (s of i.students){%>
+
+                <small>
+                    <%= s.name %>
+                </small>
+                
             <%}%>
+            
             <form action="/interviews/add-student" method="post">
     
                 <label for="students">Choose a Student:</label>
 
                 <select name="student">
-                    
-                <% for (s of students){%>
+
+                <% for (s of allStudents){%>
                     <option value="<%= s._id %>">
                         <%= s.name %>
                     </option>

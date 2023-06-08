@@ -14,9 +14,10 @@ const studentSchema = new mongoose.Schema({
         required: true
     },
     placed: {
-        type: Boolean,
-        required: true,
-        default: false
+        type: String,
+        enum: ['Placed', 'Not Placed'],
+        default: 'Not Placed',
+        required: true
     },
     DSA: {
         type: Number,
