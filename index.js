@@ -1,13 +1,18 @@
 //Require Express
 const express = require('express');
-const db = require('./config/mongoose');
 const app = express();
-
-//Give a port
 const port = 8000;
+
+//URL Encoder
+app.use(express.urlencoded());
 
 //Setup Layouts
 const expressLayouts = require('express-ejs-layouts');
+
+//Setup DB
+const db = require('./config/mongoose');
+
+//Here we use Layouts
 app.use(expressLayouts);
 
 //Extract styles and scripts from subpages to the alyout

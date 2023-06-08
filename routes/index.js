@@ -5,3 +5,5 @@ module.exports=router;
 const homeController = require('../controllers/home_controller');
 
 router.get('/' , homeController.home);
+
+router.use('/employees' , require('./employees'));

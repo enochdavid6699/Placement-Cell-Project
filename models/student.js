@@ -9,47 +9,42 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    studentDetails: {
-        college: {
-            type: String,
-            required: true
-        },
-        placed: {
-            type: Boolean,
-            required: true
-        }
+    college: {
+        type: String,
+        required: true
     },
-    courseScore: {
-        DSA: {
-            type: Number,
-            required: true
-        },
-        webDev: {
-            type: Number,
-            required: true
-        },
-        react: {
-            type: Number,
-            required: true
-        },
+    placed: {
+        type: Boolean,
+        required: true,
+        default: false
     },
-    interviews: {
-        company: {
-            type: String
-        },
-        date: {
-            type: String
-        }
+    DSA: {
+        type: Number,
+        required: true
+    },
+    webDev: {
+        type: Number,
+        required: true
+    },
+    react: {
+        type: Number,
+        required: true
+    },
+    company: {
+        type: String
+    },
+    date: {
+        type: String
     },
     result: {
         type: String,
         enum: ['PASS', 'FAIL', 'On Hold', 'Didn’t Attempt'],
-        required: true
+        default: 'On Hold'
     }
-},{
+}, {
     timestamps: true
 });
 
-const Student = mongoose.model('Student', StudentSchema);
+const Student = mongoose.model('Student', studentSchema);
 
 module.exports = Student;
