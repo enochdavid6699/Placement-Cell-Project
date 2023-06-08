@@ -1,4 +1,5 @@
 const Student = require('../models/student');
+const Interview = require('../models/interview')
 
 module.exports.home = async function (req, res) {
 
@@ -8,9 +9,14 @@ module.exports.home = async function (req, res) {
       .sort('-createdAt')
       .populate()
 
+    let interviews = await Interview.find({})
+    .sort('-createdAt')
+    .populate()
+
     return res.render('home', {
       title: "Home",
-      students: students
+      students: students,
+      interviews: interviews
     });
 
   } catch (error) {
