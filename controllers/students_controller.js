@@ -25,13 +25,20 @@ module.exports.createStudent = async function (req, res) {
     }
 };
 
+//Update Student
+module.exports.update = function (req, res) {
+    Student.findByIdAndUpdate(req.params.id, req.body, function (err, student) {
+        return res.redirect('back');
+    });
+}
+
 //Delete Student
-module.exports.deleteStudent = async function (rerq, res) {
+module.exports.deleteStudent = async function (req, res) {
 
     try {
         let student = await Student.findById(req.body._id);
 
-        if(student){
+        if (student) {
             await Student.findByIdAndDelete(req.body._id);
         }
 

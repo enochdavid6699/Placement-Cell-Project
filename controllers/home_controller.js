@@ -1,5 +1,6 @@
 const Student = require('../models/student');
-const Interview = require('../models/interview')
+const Interview = require('../models/interview');
+const Employee = require('../models/employee');
 
 module.exports.home = async function (req, res) {
 
@@ -13,10 +14,13 @@ module.exports.home = async function (req, res) {
     .sort('-createdAt')
     .populate()
 
+    let employees = await Employee.find({})
+
     return res.render('home', {
       title: "Home",
       students: students,
-      interviews: interviews
+      interviews: interviews,
+      employees: employees
     });
 
   } catch (error) {
