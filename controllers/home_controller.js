@@ -11,8 +11,8 @@ module.exports.home = async function (req, res) {
       .populate()
 
     let interviews = await Interview.find({})
-    .sort('-createdAt')
-    .populate()
+      .sort('-createdAt')
+      .populate()
 
     let employee = await Employee.findById(req.user._id);
 
@@ -24,7 +24,7 @@ module.exports.home = async function (req, res) {
     });
 
   } catch (error) {
-    console.log('Error', err);
+    console.log('Error', error);
     return;
   }
 }

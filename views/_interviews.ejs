@@ -3,7 +3,29 @@
         <li>
             <%= i.company %>
             <%= i.job %>
-            <%= i.date %>
+
+            <% for (s of students){%>
+                <%= s.name %>
+            <%}%>
+            <form action="/interviews/add-student" method="post">
+    
+                <label for="students">Choose a Student:</label>
+
+                <select name="student">
+                    
+                <% for (s of students){%>
+                    <option value="<%= s._id %>">
+                        <%= s.name %>
+                    </option>
+                <%}%>
+            
+                <input type="date" name="date" placeholder="date" required>
+
+                <input type="hidden" name="interview" value="<%= i._id %>">
+
+                <input type="submit" value="Submit">
+
+            </form> 
         </li>
     <%}%>
 </ul>
