@@ -30,17 +30,18 @@ const studentSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    company: {
-        type: String
-    },
-    date: {
-        type: String
-    },
     result: {
         type: String,
         enum: ['PASS', 'FAIL', 'On Hold', 'Didn’t Attempt'],
         default: 'On Hold'
-    }
+    },
+    //Include the Array of Ids of all the Interviews of a Student
+    interviews: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Interview'
+        }
+    ]
 }, {
     timestamps: true
 });

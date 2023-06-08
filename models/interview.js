@@ -12,7 +12,14 @@ const interviewSchema = new mongoose.Schema({
     job:{
         type: String,
         required: true
-    }
+    },
+    //Include the Array of Ids of all the STudents of an Interview
+    students: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Student'
+        }
+    ]
 }, {
     timestamps: true
 });

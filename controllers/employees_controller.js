@@ -25,7 +25,7 @@ module.exports.signIn = function (req, res) {
     });
 }
 
-// get the sign up data
+//Get the sign up data
 module.exports.create =async function(req, res){
     if (req.body.password != req.body.confirm_password){
         // req.flash('error', 'Passwords do not match');

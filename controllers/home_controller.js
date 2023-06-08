@@ -14,13 +14,13 @@ module.exports.home = async function (req, res) {
     .sort('-createdAt')
     .populate()
 
-    let employees = await Employee.find({})
+    let employee = await Employee.findById(req.user._id);
 
     return res.render('home', {
       title: "Home",
       students: students,
       interviews: interviews,
-      employees: employees
+      employee: employee
     });
 
   } catch (error) {
