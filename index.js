@@ -48,9 +48,9 @@ app.use(session({
     })
 }));
 
+//Passport
 app.use(passport.initialize());
 app.use(passport.session());
-
 app.use(passport.setAuthenticatedUser);
 
 //use exxpress router

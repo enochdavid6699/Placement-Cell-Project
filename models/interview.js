@@ -6,7 +6,8 @@ const interviewSchema = new mongoose.Schema({
         required: true
     },
     date:{
-        type: String
+        type: String,
+        required: true
     },
     job:{
         type: String,

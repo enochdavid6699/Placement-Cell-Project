@@ -1,6 +1,11 @@
 //Require Student
 const Student = require('../models/student');
 
+//Require Interview
+const Interview = require('../models/interview');
+
+const fs = require('fs');
+
 //Create Student Page
 module.exports.createStudentPage = function (req, res) {
 
@@ -64,9 +69,90 @@ module.exports.deleteStudent = async function (req, res) {
     }
 }
 
-//Download Student Details
-module.exports.download = async function(req , res){
-    //TODO
-    console.log("CSV Download")
-    return res.redirect('/');
-}
+const { createObjectCsvWriter } = require('csv-writer');
+
+// Download Student Details
+module.exports.download = async function (req, res) {
+    try {
+      // Fetch all student data from the database
+      const students = await Student.find({})
+        .populate({
+          path: 'interviews',
+          select: 'date company job',
+        });
+  
+      if (students.length === 0) {
+        return res.status(404).send('No students found');
+      }
+  
+      // Define the CSV header and fields
+      const csvHeader = [
+        { id: 'id', title: 'ID' },
+        { id: 'name', title: 'Name' },
+        { id: 'college', title: 'College' },
+        { id: 'placed', title: 'Placed' },
+        { id: 'batch', title: 'Batch' },
+        { id: 'DSA', title: 'DSA' },
+        { id: 'webDev', title: 'Web Development' },
+        { id: 'react', title: 'React' },
+        { id: 'interviewDate', title: 'Interview Date' },
+        { id: 'interviewCompany', title: 'Interview Company' },
+        { id: 'interviewJob', title: 'Interview Job' },
+        { id: 'result', title: 'Result' },
+      ];
+  
+      // Map the student data to CSV rows
+      const csvRows = students.map((student) => {
+        // Map interviews data to an array of interview strings
+        const interviews = student.interviews.map((interview) => {
+          return {
+            date: interview.date,
+            company: interview.company,
+            job: interview.job,
+          };
+        });
+  
+        // Combine all interview details into a single string
+        const interviewDates = interviews.map((interview) => interview.date).join(', ');
+        const interviewCompanies = interviews.map((interview) => interview.company).join(', ');
+        const interviewJobs = interviews.map((interview) => interview.job).join(', ');
+  
+        return {
+          id: student._id,
+          name: student.name,
+          college: student.college,
+          placed: student.placed,
+          batch: student.batch,
+          DSA: student.DSA,
+          webDev: student.webDev,
+          react: student.react,
+          interviewDate: interviewDates,
+          interviewCompany: interviewCompanies,
+          interviewJob: interviewJobs,
+          result: student.result,
+        };
+      });
+  
+      // Create a CSV writer and specify the file path and header
+      const csvWriter = createObjectCsvWriter({
+        path: 'student_details.csv',
+        header: csvHeader,
+      });
+  
+      // Write the CSV rows to the file
+      await csvWriter.writeRecords(csvRows);
+  
+      // Set the response headers for downloading the file
+      res.setHeader('Content-Type', 'text/csv');
+      res.setHeader('Content-Disposition', 'attachment; filename=student_details.csv');
+  
+      // Stream the file to the response
+      const fileStream = fs.createReadStream('student_details.csv');
+      fileStream.pipe(res);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    }
+  };
+  
+
