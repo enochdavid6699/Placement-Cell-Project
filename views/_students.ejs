@@ -1,4 +1,3 @@
-
 <ul id="students">
     <% for (s of allStudents){%>
         <li>
@@ -10,36 +9,34 @@
             <span> College: <%= s.college %></span>
             <br>
             <span>DSA: <%= s.DSA %></span>
-            <span> Web Developement: <%= s.webDev %></span>
+            <span> Web Development: <%= s.webDev %></span>
             <span> React: <%= s.react %></span>
             <br>
             <span>Status: <%= s.placed %></span>
             <span> Result: <%= s.result %></span>
             <br>
             
-            <div>
-                <% for (i of s.interviews){%>
-
-                    <small>
-                        <%= i.company %>
-                    </small>
-    
-                    <small>
-                        <%= i.job %>
-                    </small>
-    
-                    <small>
-                        <%= i.date %>
-                    </small>
-                    
-                <%}%>
-            </div>
+            <div class="Extra-Container dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Interviews
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <% for (i of s.interviews){%>
+                    <a class="dropdown-item" href="#">
+                      <div class="interview-item">
+                        <span class="company"><%= i.company %></span>
+                        <span class="job"><%= i.job %></span>
+                        <span class="date"><%= i.date %></span>
+                      </div>
+                    </a>
+                  <%}%>
+                </div>
+              </div>
 
             <form action="/students/update-page/<%= s._id %>" method="get">
                 <button type="submit">Update</button>
             </form>
               
-
         </li>
     <%}%>
 </ul>

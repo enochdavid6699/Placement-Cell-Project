@@ -16,10 +16,11 @@ module.exports.createInterviewPage = function (req, res) {
 module.exports.createInterview = async function (req, res) {
 
     try {
+
+        //Create an Interview
         let interview = await Interview.create(req.body);
         await interview.save();
 
-        //TODO
         return res.redirect('/');
 
     } catch (error) {
@@ -78,21 +79,20 @@ module.exports.addStudentToInterview = async function (req, res) {
 // Removing Student from interview
 module.exports.removeStudentFromInterview = async function (req, res) {
     const { studentId, interviewId } = req.params;
-  
+
     try {
-      const interview = await Interview.findById(interviewId);
-      const student = await Student.findById(studentId);
-  
-      if (interview && student) {
-        interview.students.pull(studentId);
-        student.interviews.pull(interviewId);
-  
-        await Promise.all([interview.save(), student.save()]);
-  
-        return res.redirect('back');
-      }
+        const interview = await Interview.findById(interviewId);
+        const student = await Student.findById(studentId);
+
+        if (interview && student) {
+            interview.students.pull(studentId);
+            student.interviews.pull(interviewId);
+
+            await Promise.all([interview.save(), student.save()]);
+
+            return res.redirect('back');
+        }
     } catch (err) {
-      console.error(err);
+        console.error(err);
     }
-  };
-  
+};

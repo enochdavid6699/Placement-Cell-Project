@@ -1,5 +1,7 @@
+//Require Mongoose
 const mongoose = require('mongoose');
 
+//Create Schema
 const interviewSchema = new mongoose.Schema({
     company:{
         type: String,
@@ -13,7 +15,7 @@ const interviewSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    //Include the Array of Ids of all the STudents of an Interview
+    //Include the Array of Ids of all the sudents of an Interview
     students: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -24,7 +26,7 @@ const interviewSchema = new mongoose.Schema({
     timestamps: true
 });
 
-
 const Interview = mongoose.model('Interview', interviewSchema);
 
+//Export Interview
 module.exports = Interview;

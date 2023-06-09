@@ -1,5 +1,7 @@
+//Require Mongoose
 const mongoose = require('mongoose');
 
+//Create Schema
 const studentSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -49,4 +51,5 @@ const studentSchema = new mongoose.Schema({
 
 const Student = mongoose.model('Student', studentSchema);
 
+//Export Student
 module.exports = Student;

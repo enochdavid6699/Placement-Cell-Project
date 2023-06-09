@@ -1,5 +1,7 @@
+//Require Mongoose
 const mongoose = require('mongoose');
 
+//Create Schema
 const employeeSchema = new mongoose.Schema({    
         email:{
             type: String,
@@ -18,4 +20,5 @@ const employeeSchema = new mongoose.Schema({
 
 const Employee = mongoose.model('Employee' , employeeSchema);
 
+//Export Employee
 module.exports = Employee;

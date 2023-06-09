@@ -3,9 +3,12 @@
 /* Header styles */
 header {
     background-color: #292F36;
-    padding: 10px;
+    padding: 30px;
     text-align: center; /* Updated */
     height: 40px;
+    margin-bottom: 0;
+    height: 50px;
+    padding-bottom: 30px;
   }
   
   /* Logo styles */

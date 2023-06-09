@@ -12,23 +12,19 @@
 }
 
 #students li {
+  font-size: small;
   background-color: #F4F4F4;
   padding: 10px;
   margin-bottom: 10px;
   text-align: center; /* Center the content inside each list item */
+  display: flex;
+  align-items: center;
 }
 
 #students li:hover {
   background-color: #E0E0E0;
 }
 
-/* Delete link styles */
-#students li a {
-  color: #FF0000;
-  text-decoration: none;
-  font-weight: bold;
-  margin-right: 5px;
-}
 
 /* Interview styles */
 #students li small {
@@ -41,3 +37,44 @@ img {
   height: 30px;
   width: 30px;
 }
+
+/* Dropdown button */
+.dropdown-toggle {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  background-color: #f8f9fa;
+}
+
+/* Dropdown items */
+.dropdown-item {
+  color: #212529;
+}
+
+/* Hover effect on dropdown items */
+.dropdown-item:hover {
+  background-color: #e9ecef;
+}
+
+.interview-item {
+  padding: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+.company {
+  font-weight: bold;
+}
+
+.job {
+  color: #666;
+}
+
+.date {
+  font-style: italic;
+}
+
+

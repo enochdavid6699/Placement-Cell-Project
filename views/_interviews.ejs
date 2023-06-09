@@ -1,43 +1,68 @@
-<ul>
-    <% for (i of interviews){%>
-        <li id="interview">
-            <a href="/interviews/delete-interview/<%= i._id %>"><img width="100" height="100" src="https://img.icons8.com/plasticine/100/filled-trash.png" alt="filled-trash"/></a>
-            <%= i.company %>
+<div class="interview-list">
+    <ul id="interview-container">
+        <% for (i of interviews){%>
+            <li id="interview">
+                <a href="/interviews/delete-interview/<%= i._id %>"><img width="100" height="100"
+                        src="https://img.icons8.com/plasticine/100/filled-trash.png" alt="filled-trash" /></a>
 
-            <br>
-            
-            <%= i.job %>
+                <span> Company: <%= i.company %> </span>
+
+                <br>
+
+                <span> Job Title: <%= i.job %> </span>
 
 
-            <% for (s of i.students){%>
 
-                <small>
-                    <%= s.name %>
-                </small>
+                <div class="Extra-Container dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Students
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <% for (s of i.students){%>
 
-                <a href="/interviews/remove-student-from-interview/<%= s._id %>/<%= i._id %>"><img width="100" height="100" src="https://img.icons8.com/plasticine/100/filled-trash.png" alt="filled-trash"/></a>
-                
+                            <a class="dropdown-item" href="#">
+                                <div class="interview-item">
+
+                                    <span>
+                                        <%= s.name %>
+                                    </span>
+
+                                    <a href="/interviews/remove-student-from-interview/<%= s._id %>/<%= i._id %>"><img
+                                            width="100" height="100"
+                                            src="https://img.icons8.com/plasticine/100/filled-trash.png"
+                                            alt="filled-trash" /></a>
+
+                                </div>
+                            </a>
+
+                            <%}%>
+
+                    </div>
+                </div>
+
+
+
+
+
+                <form action="/interviews/add-student" method="post">
+
+                    <label for="students">Choose a Student:</label>
+
+                    <select name="student">
+
+                        <% for (s of allStudents){%>
+                            <option value="<%= s._id %>">
+                                <%= s.name %>
+                            </option>
+                            <%}%>
+
+                                <input type="hidden" name="interview" value="<%= i._id %>">
+
+                                <input type="submit" value="Submit">
+
+                </form>
+            </li>
             <%}%>
-            
-            <form action="/interviews/add-student" method="post">
-    
-                <label for="students">Choose a Student:</label>
-
-                <select name="student">
-
-                <% for (s of allStudents){%>
-                    <option value="<%= s._id %>">
-                        <%= s.name %>
-                    </option>
-                <%}%>
-            
-                <input type="date" name="date" placeholder="date" required>
-
-                <input type="hidden" name="interview" value="<%= i._id %>">
-
-                <input type="submit" value="Submit">
-
-            </form> 
-        </li>
-    <%}%>
-</ul>
+    </ul>
+</div>

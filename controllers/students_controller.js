@@ -21,7 +21,6 @@ module.exports.createStudent = async function (req, res) {
         let student = await Student.create(req.body);
         await student.save();
 
-        //TODO
         return res.redirect('/');
 
     } catch (error) {
