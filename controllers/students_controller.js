@@ -25,21 +25,35 @@ module.exports.createStudent = async function (req, res) {
     }
 };
 
-//Update Student
-module.exports.update = function (req, res) {
-    Student.findByIdAndUpdate(req.params.id, req.body, function (err, student) {
-        return res.redirect('back');
+//Update Page Student
+module.exports.updatePage = async function (req, res) {
+
+    let student = await Student.findById(req.params.id);
+
+    student.populate();
+
+    return res.render('update_student', {
+        title: "Update Student",
+        student: student
     });
+}
+
+//Update Student
+module.exports.update = async function (req, res) {
+   
+    let student = await Student.findByIdAndUpdate(req.body.student_id , req.body);
+
+    return res.redirect('/');
 }
 
 //Delete Student
 module.exports.deleteStudent = async function (req, res) {
 
     try {
-        let student = await Student.findById(req.body._id);
+        let student = await Student.findById(req.params.id);
 
         if (student) {
-            await Student.findByIdAndDelete(req.body._id);
+            await Student.findByIdAndDelete(req.params.id);
         }
 
         return res.redirect('/');
@@ -48,4 +62,11 @@ module.exports.deleteStudent = async function (req, res) {
         console.log(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
+}
+
+//Download Student Details
+module.exports.download = async function(req , res){
+    //TODO
+    console.log("CSV Download")
+    return res.redirect('/');
 }

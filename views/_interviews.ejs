@@ -1,14 +1,21 @@
 <ul>
     <% for (i of interviews){%>
-        <li>
+        <li id="interview">
+            <a href="/interviews/delete-interview/<%= i._id %>"><img width="100" height="100" src="https://img.icons8.com/plasticine/100/filled-trash.png" alt="filled-trash"/></a>
             <%= i.company %>
+
+            <br>
+            
             <%= i.job %>
+
 
             <% for (s of i.students){%>
 
                 <small>
                     <%= s.name %>
                 </small>
+
+                <a href="/interviews/remove-student-from-interview/<%= s._id %>/<%= i._id %>"><img width="100" height="100" src="https://img.icons8.com/plasticine/100/filled-trash.png" alt="filled-trash"/></a>
                 
             <%}%>
             

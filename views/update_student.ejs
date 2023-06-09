@@ -1,0 +1,41 @@
+<form action="/students/update" method="post">
+    <p>Name</p>
+    <input type="text" name="name" placeholder="name" value="<%= student.name %>" required>
+    <br>
+    <p>Batch</p>
+    <input type="text" name="batch" placeholder="batch" value="<%= student.batch %>" required>
+    <br>
+    <p>College</p>
+    <input type="text" name="college" placeholder="college" value="<%= student.college %>" required>
+    <br>
+    <p>DSA Score</p>
+    <input type="number" name="DSA" placeholder="Score in DSA" value="<%= student.DSA %>" required>
+    <br>
+    <p>Web Developement Score</p>
+    <input type="number" name="webDev" placeholder="Score In Web Development" value="<%= student.webDev %>" required>
+    <br>
+    <p>React Score</p>
+    <input type="number" name="react" placeholder="Score in React" value="<%= student.react %>">
+    <br>
+
+    <label for="placed">Placed?</label>
+    <select name="placed" required>
+        <option value="Placed">Placed</option>
+        <option value="Not Placed">Not Placed</option>
+    </select>
+    <br>
+
+    <label for="result">Result</label>
+    <select name="result" required>
+        <option value="PASS">PASS</option>
+        <option value="FAIL">FAIL</option>
+        <option value="On Hold">On Hold</option>
+        <option value="Didn't Attempt">Didn't Attempt</option>
+    </select>
+
+    <br>
+
+    <input type="hidden" name="student_id" value="<%= student._id %>">
+
+    <input type="submit" value="Submit">
+</form>

@@ -1,30 +1,44 @@
-<ul>
+
+<ul id="students">
     <% for (s of allStudents){%>
         <li>
-            <%= s.name %>
-            <%= s.batch %>
-            <%= s.college %>
-            <%= s.DSA %>
-            <%= s.webDev %>
-            <%= s.react %>
-            <%= s.placed %>
-            <%= s.result %>
 
-            <% for (i of s.interviews){%>
+            <a href="/students/delete-student/<%= s._id %>"><img width="100" height="100" src="https://img.icons8.com/plasticine/100/filled-trash.png" alt="filled-trash"/></a>
 
-                <small>
-                    <%= i.company %>
-                </small>
+            <span>Name: <%= s.name %></span>
+            <span> Batch: <%= s.batch %></span>
+            <span> College: <%= s.college %></span>
+            <br>
+            <span>DSA: <%= s.DSA %></span>
+            <span> Web Developement: <%= s.webDev %></span>
+            <span> React: <%= s.react %></span>
+            <br>
+            <span>Status: <%= s.placed %></span>
+            <span> Result: <%= s.result %></span>
+            <br>
+            
+            <div>
+                <% for (i of s.interviews){%>
 
-                <small>
-                    <%= i.job %>
-                </small>
+                    <small>
+                        <%= i.company %>
+                    </small>
+    
+                    <small>
+                        <%= i.job %>
+                    </small>
+    
+                    <small>
+                        <%= i.date %>
+                    </small>
+                    
+                <%}%>
+            </div>
 
-                <small>
-                    <%= i.date %>
-                </small>
-                
-            <%}%>
+            <form action="/students/update-page/<%= s._id %>" method="get">
+                <button type="submit">Update</button>
+            </form>
+              
 
         </li>
     <%}%>

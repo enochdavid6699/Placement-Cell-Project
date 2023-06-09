@@ -41,7 +41,7 @@ const studentSchema = new mongoose.Schema({
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Interview'
-        }
+        }   
     ]
 }, {
     timestamps: true

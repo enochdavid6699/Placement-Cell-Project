@@ -1,15 +1,27 @@
 <header>
-    <%= title %>
 
         <% if(locals.employee){%>
-            <a href="/students/create-student-page">Add Student</a>
-            <a href="/interviews/create-interview-page">Add Interview</a>
-            <a href="/">Dashboard</a>
-            <p><%= employee.name %></p>
-            <a href="/employees/sign-out">Sign Out</a>
+
+            <ul class="nav-links">
+                <li>
+                    <a href="" >Hi <%= employee.name %> -</a>
+                </li>
+                <li>
+                    <a href="/students/create-student-page">Add Student</a>
+                </li>
+                <li>
+                    <a href="/interviews/create-interview-page">Add Interview</a>
+                </li>
+                <li>
+                    <a href="/students/download">Download CSV</a>
+                </li>
+                <li>
+                    <a href="/employees/sign-out">Sign Out</a>
+                </li>
+            </ul>
+            
         <%}else {%>
-            <li><a href="/employees/sign-in">Sign In</a></li>
-            <li><a href="/employees/sign-up">Sign Up</a></li>
+            <a href="/" style="text-decoration: none; color: white; font-size: large;">Dashboard</a>
         <%} %>
 
 </header>

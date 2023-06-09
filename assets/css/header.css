@@ -1,0 +1,53 @@
+/* styles.css */
+
+/* Header styles */
+header {
+    background-color: #292F36;
+    padding: 10px;
+    text-align: center; /* Updated */
+    height: 40px;
+  }
+  
+  /* Logo styles */
+  .logo {
+    font-size: 24px;
+    color: #FFD700;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block; /* Added */
+  }
+  
+  /* Navigation styles */
+  .nav-links {
+    list-style: none;
+    display: inline-block; /* Added */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-links li {
+    display: inline-block;
+    margin-left: 10px;
+    
+  }
+  
+  .nav-links a {
+    color: #FFF;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    background-color: #FFD700;
+    color: #292F36;
+  }
+  
+  /* Active link styles */
+  .nav-links a.active {
+    background-color: #FFD700;
+    color: #292F36;
+  }
+  
