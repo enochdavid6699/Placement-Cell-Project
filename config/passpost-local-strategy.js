@@ -18,7 +18,7 @@ passport.use(new LocalStrategy({
         if(!employee || employee.password != password){
             console.log('Invalid Username Password');
 
-            req.flash('error' , 'Invalid Username/Password');
+            // req.flash('error' , 'Invalid Username/Password');
 
             return done(null , false);
         }
